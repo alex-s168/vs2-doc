@@ -57,6 +57,7 @@ class is not compatible with the old data anymore. To fix this, you should creat
 and make the old one copy everything over to the new one, and then delete the old one from a ship.
 
 For ship force inducers, you can use the `applyForces` method as event hook.
+
 If your attachment is not a ship force inducer, you can use the shipLoadEvent to do that:
 
 Register an event lister in your mod's on-load (init) method:
@@ -66,6 +67,7 @@ VSEvents.shipLoadEvent.on { event ->
 }
 ```
 In there, you can check if the ship has your old attachment and then remove it and save the new one.
+(For more information about the events in VS2, go to [VS Events](vs_events.md))
 
 ## Force inducers
 Implementing the `ShipForcesInducer` interface in the package
