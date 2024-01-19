@@ -24,7 +24,7 @@ To convert this to a `ResourceKey<Level>` (which is how Minecraft stores level I
 fun DimensionId.toDimensionKey() {
   val it = this.split(":")
   val rl = ResourceLocation(it[it.size - 2], it[it.size - 1])
-  return ResourceKey.create(Registry.DIMENSION_REGISTRY, this)
+  return ResourceKey.create(Registry.DIMENSION_REGISTRY, rl)
 }
 ```
 This can now be used to for example get the `ServerLevel` of a ship when given a `MinecraftServer` object using the `getLevel` method in `MinecraftServer`.
