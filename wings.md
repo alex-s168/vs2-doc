@@ -1,5 +1,4 @@
 # Wings
-(This chapter discusses wing and flap blocks)
 
 ## How to create a wing block
 Create a class that extends Minecraft's `Block` class and implements `org.valkyrienskies.mod.common.block.WingBlock`.
@@ -54,3 +53,31 @@ Flaps are identical to Wings but have a `wingCamberAttackAngleBias` of zero.
 | VS2 debug flap | 150 | 30 | 0° | inf |
 | Clockwork wing | 150 | 150 | 10° | 10 |
 | Clockwork flap | 150 | 150 | 0° | 10 |
+
+## Non Block Aligned Wings
+Sometimes you want scaled or rotated invisible wings on your ship.
+For that you can use `org.valkyrienskies.core.api.ships.WingManager`.
+
+`WingManager` is a attachment class, which means that you can get it with `ship.getAttachment<WingManager>()`.
+
+A `WingManager` manages wing groups which consist of voxel grid aligned `Wing`s.
+To get it to be any rotation, position and scale, use `WingManager#setWingGroupTransform`.
+
+Example:
+```kotlin
+fun createWing(ship: Ship, wingStats: Wing, pos: Vector3dc, rot: Quaterniondc, scale: Vector3dc): WingGroupId {
+    val wm = ship.getAttachment<WingManager>()
+
+    val group = wm.createWingGroup()
+    wm.setWing(group, 0, 0, 0, wingStats)
+
+    val transform = Matrix4d().setTranslation(pos)
+    transform.mul(Matrix4d().rotation(rot))
+    transform.mul(Matrix4d().scaling(scale))
+    wm.setWingGroupTransform(group, transform)
+
+    return group
+}
+```
+
+Don't forget to delete your wing group with `WingManager#deleteWingGroup`!
