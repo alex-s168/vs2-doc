@@ -12,6 +12,11 @@ VS2 provides some useful events in `org.valkyrienskies.core.impl.hooks.VSEvents`
 `org.valkyrienskies.mod.common.hooks.VSGameEvents`:
 | Name | Description | Arguments |
 | - | - | - |
+| `registriesCompleted` | Will be called once the mass & similar registries are filled with data | |
+| `tagsAreLoaded` | Will be called after Minecraft tags are loaded | |
+| `renderShip` | Will be called before a ship is rendered | `org.valkyrienskies.mod.common.hooks.VSGameEvents.ShipRenderEvent` |
+| `postRenderShip` | Will be called after a ship is rendered | `org.valkyrienskies.mod.common.hooks.VSGameEvents.ShipRenderEvent` |
+| `shipsStartRendering` | Will be called before all ships are rendered | `org.valkyrienskies.mod.common.hooks.VSGameEvents.ShipStartRenderEvent` |
 
 ## How to listen to events
 There is a `on` method in all of those events.
